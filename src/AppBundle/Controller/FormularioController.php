@@ -10,12 +10,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Task;
+use AppBundle\Form\Type\TaskType;
 use AppBundle\Entity\Product; //así importas la clase
 
 class FormularioController extends Controller
 {
 	/**
-	* @Route("/form/")
+	* @Route("/form/", name="target_route")
 	*/
 	public function newAction(Request $request)
 	{	//linea de comentario
@@ -24,7 +25,11 @@ class FormularioController extends Controller
 		$task->setTask('Write a blog post');
 		$task->setDueDate(new \DateTime('tomorrow'));
 		*/
+
+		/*
 		$form = $this->createFormBuilder($task)
+			->setAction($this->generateUrl('target_route'))
+			->setMethod('GET')
 			->add('task', 'text')
 			->add('dueDate', 'date', 
 				array('widget' => 'single_text',
@@ -33,7 +38,8 @@ class FormularioController extends Controller
 			->add('save', 'submit', array('label' => 'Create Task'))
 			->add('saveAndAdd', 'submit', array('label' => 'Save and Add'))
 			->getForm();
-
+		*/
+		$form = $this->createForm(new TaskType(), $task);
 		$form->handleRequest($request);
 		if ($form->isValid()) {
 			// perform some action, such as saving the task to the database

@@ -170,4 +170,13 @@ class DefaultController extends Controller
         .' and category id: '.$category->getId()
         );
     }
+
+    /**
+    * @Route("/admin")
+    */
+    
+    public function adminAction()
+    {
+      return new Response('<html><body>Admin page!</body></html>');
+    }
 }

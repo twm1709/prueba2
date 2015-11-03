@@ -1,4 +1,6 @@
 {# app/Resources/views/default/new.html.twig #}
 {{ form_start(form) }}
-{{ form_widget(form) }}
+	{{ form_errors(form) }}
+	{{ form_row(form.task) }}
+	{{ form_row(form.dueDate) }}
 {{ form_end(form) }}
